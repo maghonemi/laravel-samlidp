@@ -1,8 +1,8 @@
 <?php
 
-namespace CodeGreenCreative\SamlIdp\Listeners;
+namespace Maghonemi\SamlIdp\Listeners;
 
-use CodeGreenCreative\SamlIdp\Jobs\SamlSso;
+use Maghonemi\SamlIdp\Jobs\SamlSso;
 use Illuminate\Auth\Events\Authenticated;
 
 class SamlAuthenticated
@@ -15,7 +15,7 @@ class SamlAuthenticated
      */
     public function handle(Authenticated $event)
     {
-        if (request()->filled('SAMLRequest') && ! request()->is('saml/logout') && request()->isMethod('get')) {
+        if (request()->filled('SAMLRequest') && ! request()->is('saml/logout')) {
             abort(response(SamlSso::dispatchNow()), 302);
         }
     }

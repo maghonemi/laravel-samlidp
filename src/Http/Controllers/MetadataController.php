@@ -1,8 +1,8 @@
 <?php
 
-namespace CodeGreenCreative\SamlIdp\Http\Controllers;
+namespace Maghonemi\SamlIdp\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class MetadataController extends Controller
@@ -19,7 +19,7 @@ class MetadataController extends Controller
             \Barryvdh\Debugbar\Facade::disable();
         }
 
-        $cert = Storage::disk('samlidp')->get(config('samlidp.certname', 'cert.pem'));
+        $cert = Storage::disk('samlidp')->get('cert.pem');
         $cert = preg_replace('/^\W+\w+\s+\w+\W+\s(.*)\s+\W+.*$/s', '$1', $cert);
         $cert = str_replace(PHP_EOL, "", $cert);
 

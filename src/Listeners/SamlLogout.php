@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeGreenCreative\SamlIdp\Listeners;
+namespace Maghonemi\SamlIdp\Listeners;
 
 use Illuminate\Auth\Events\Logout;
 
@@ -16,7 +16,7 @@ class SamlLogout
     public function handle(Logout $event)
     {
         // Make sure we are not in the process of SLO when handling the redirect
-        if (null === session('saml.slo')) {
+        if (!session('saml.slo')) {
             abort(redirect('saml/logout'), 200);
         }
     }

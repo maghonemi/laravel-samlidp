@@ -1,9 +1,9 @@
 <?php
 
-namespace CodeGreenCreative\SamlIdp\Http\Controllers;
+namespace Maghonemi\SamlIdp\Http\Controllers;
 
-use Illuminate\Routing\Controller;
-use CodeGreenCreative\SamlIdp\Jobs\SamlSlo;
+use App\Http\Controllers\Controller;
+use Maghonemi\SamlIdp\Jobs\SamlSlo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -21,10 +21,6 @@ class LogoutController extends Controller
             $slo_redirect = $request->session()->get('saml.slo_redirect');
         }
 
-        if (null === $request->session()->get('saml.slo')) {
-            $request->session()->put('saml.slo', []);
-        }
-
         // Need to broadcast to our other SAML apps to log out!
         // Loop through our service providers and "touch" the logout URL's
         foreach (config('samlidp.sp') as $key => $sp) {
@@ -38,7 +34,6 @@ class LogoutController extends Controller
 
         if (config('samlidp.logout_after_slo')) {
             auth()->logout();
-            $request->session()->invalidate();
         }
 
         $request->session()->forget('saml.slo');
