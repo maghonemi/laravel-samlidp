@@ -3,7 +3,9 @@
 
 # Laravel SAML IdP
 
-This package allows you to implement your own Identification Provider (idP) using the SAML 2.0 standard to be used with supporting SAML 2.0 Service Providers (SP).
+This package allows you to implement your own Identification Provider (idP) using the SAML 2.0 standard to be used with supporting SAML 2.0 Service Providers (SP). from  https://github.com/codegreencreative/laravel-samlidp.
+
+In this repo, we changed DigestMethod hashing to be SHA256 not SHA1
 
 In this version we will be allowing for Laravel ^7.0 or ^8.0.
 
@@ -14,7 +16,7 @@ If you are looking for Laravel ^6.0 use [v2.0](https://github.com/codegreencreat
 ## Installation
 
 ```shell
-composer require codegreencreative/laravel-samlidp
+composer require maghonemi/laravel-samlidp
 ```
 
 # Configuration
