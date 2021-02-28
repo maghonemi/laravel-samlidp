@@ -27,6 +27,7 @@ use Maghonemi\SamlIdp\Contracts\SamlContract;
 use LightSaml\Model\Assertion\SubjectConfirmationData;
 use Maghonemi\SamlIdp\Traits\PerformsSingleSignOn;
 use Maghonemi\SamlIdp\Events\Assertion as AssertionEvent;
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
 
 class SamlSso implements SamlContract
 {
@@ -60,6 +61,7 @@ class SamlSso implements SamlContract
 
     public function response()
     {
+        $XMLSecurityDSig=XMLSecurityDSig::SHA256;
         $this->response = (new Response)->setIssuer(new Issuer($this->issuer))
             ->setStatus(new Status(new StatusCode('urn:oasis:names:tc:SAML:2.0:status:Success')))
             ->addAssertion($assertion = new Assertion)
@@ -72,7 +74,7 @@ class SamlSso implements SamlContract
             ->setId(Helper::generateID())
             ->setIssueInstant(new \DateTime)
             ->setIssuer(new Issuer($this->issuer))
-            ->setSignature(new SignatureWriter($this->certificate, $this->private_key))
+            ->setSignature(new SignatureWriter($this->certificate, $this->private_key,$XMLSecurityDSig))
             ->setSubject(
                 (new Subject)
                     ->setNameID((new NameID(auth()->user()->email, SamlConstants::NAME_ID_FORMAT_EMAIL)))
