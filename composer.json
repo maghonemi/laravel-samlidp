@@ -1,8 +1,6 @@
 {
     "name": "maghonemi/laravel-samlidp",
-    "description": "Make your PHP Laravel application an Idenification Provider using SAML 2.0. This package allows you to implement your own Identification Provider (idP) using the SAML 2.0 standard to be used with supporting SAML 2.0 Service Providers (SP). The main is https://github.com/codegreencreative/laravel-samlidp. In this repo, we changed DigestMethod hashing to be SHA256 not SHA1
-
-",
+    "description": "Make your PHP Laravel application an Idenification Provider using SAML 2.0. This package allows you to implement your own Identification Provider (idP) using the SAML 2.0 standard to be used with supporting SAML 2.0 Service Providers (SP). The main is https://github.com/codegreencreative/laravel-samlidp. In this repo, we changed DigestMethod hashing to be SHA256 not SHA1",
     "keywords": ["laravel", "saml", "saml 2.0", "auth", "acl", "sso", "idp"],
     "license": "MIT",
     "require": {
